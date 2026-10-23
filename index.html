@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#100C26">
+<meta property="og:title" content="Diwali Night · Save the Date">
+<meta property="og:description" content="Saturday 7 November 2026, 5 PM onwards · 20 Westfield Cres, Waterdown">
+<meta property="og:type" content="website">
+<title>Diwali Night Save the Date</title>
+<meta name="description" content="Save the date: Diwali Night, Saturday 7 November 2026. RSVP inside.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Yatra+One&family=Mukta:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: one night sky. Fireworks canvas behind everything, a lit diya at the centre of the hero,
+   a row of diyas as the horizon, then a clay-and-brass invitation card and the RSVP. Single dark look on purpose. */
+:root{
+  --night:#100C26; --night-2:#1C1440; --ivory:#FBEFD9; --muted:#BFAE93;
+  --marigold:#F2A93B; --flame:#FF7A2E; --rani:#D6336C; --clay:#A9472A; --brass:#C99A4B;
+  --display:'Rozha One','Georgia','Times New Roman',serif;
+  --deva:'Yatra One','Rozha One','Georgia',serif;
+  --body:'Mukta','Segoe UI','Helvetica Neue',Arial,sans-serif;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{background:var(--night);scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(120% 70% at 50% 0%,var(--night-2) 0%,var(--night) 60%) fixed,var(--night);color:var(--ivory);font-family:var(--body);font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+#fw{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+main{position:relative;z-index:1}
+.wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));max-width:620px;margin:0 auto}
+:focus-visible{outline:2px solid var(--marigold);outline-offset:3px;border-radius:8px}
+button{font:inherit;color:inherit}
+
+/* ---------- hero ---------- */
+.hero{text-align:center;padding-block:56px 8px}
+.kick{margin:0;font-size:13px;letter-spacing:.32em;text-transform:uppercase;color:var(--marigold);font-weight:700}
+.deva{margin:14px 0 0;font-family:var(--deva);font-size:clamp(26px,7vw,34px);color:var(--brass);line-height:1.2}
+h1{margin:2px 0 0;font-family:var(--display);font-weight:400;font-size:clamp(58px,17vw,104px);line-height:.95;text-wrap:balance;
+  background:linear-gradient(180deg,#FFE7B0 0%,var(--marigold) 55%,var(--flame) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 22px rgba(242,169,59,.28))}
+.date{margin:18px auto 0;display:inline-flex;align-items:stretch;border:1px solid rgba(201,154,75,.55);border-radius:14px;overflow:hidden;background:rgba(16,12,38,.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.date span{padding:10px 16px;display:grid;place-items:center}
+.date .d{font-family:var(--display);font-size:44px;line-height:1;color:var(--ivory);border-inline:1px solid rgba(201,154,75,.55);padding-inline:18px}
+.date .m,.date .w{font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:700;line-height:1.3}
+.host{margin:16px 0 0;color:var(--muted);font-size:17px}
+.host b{color:var(--ivory);font-weight:500}
+
+.bigdiya{position:relative;display:block;margin:22px auto 0;width:min(56vw,230px);aspect-ratio:120/100}
+.bigdiya svg{width:100%;height:100%;overflow:visible}
+
+.cta{display:inline-flex;align-items:center;gap:10px;margin-top:22px;padding:14px 28px;border-radius:999px;text-decoration:none;font-weight:700;font-size:17px;letter-spacing:.06em;
+  color:#2A1405;background:linear-gradient(180deg,#FFD27A,var(--marigold));box-shadow:0 0 0 1px rgba(255,210,122,.4),0 10px 30px rgba(242,169,59,.35)}
+.cta:hover{filter:brightness(1.06)}
+
+/* row of diyas along the horizon */
+.row{display:flex;justify-content:center;gap:clamp(6px,2.4vw,18px);margin-top:42px;padding-bottom:6px}
+.row svg{width:clamp(44px,13vw,70px);height:auto;overflow:visible}
+
+/* flame flicker */
+.flame{transform-box:fill-box;transform-origin:50% 100%;animation:flick 1.6s ease-in-out infinite}
+.glow{transform-box:fill-box;transform-origin:50% 50%;animation:breathe 2.4s ease-in-out infinite}
+@keyframes flick{0%,100%{transform:scale(1,1) skewX(0)}25%{transform:scale(.94,1.06) skewX(-3deg)}50%{transform:scale(1.04,.95) skewX(2deg)}75%{transform:scale(.97,1.04) skewX(-1deg)}}
+@keyframes breathe{0%,100%{opacity:.85;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
+.flame,.glow{transition:opacity .6s ease}
+
+/* ---------- invitation card ---------- */
+.card{margin-top:36px;padding:30px 22px 26px;border-radius:22px;background:linear-gradient(180deg,rgba(43,28,74,.92),rgba(24,17,52,.94));border:1px solid rgba(201,154,75,.45);box-shadow:0 30px 60px rgba(0,0,0,.4);text-align:center;position:relative}
+.card::before{content:"";position:absolute;inset:8px;border-radius:16px;border:1px dashed rgba(201,154,75,.3);pointer-events:none}
+.card h2{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(32px,9vw,42px);line-height:1.1;color:var(--ivory);text-wrap:balance}
+.card .lede{margin:10px auto 0;max-width:34ch;color:var(--muted)}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:18px 14px;margin:24px 0 0;text-align:left}
+.facts div{min-width:0}
+.facts dt{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--marigold);font-weight:700}
+.facts dd{margin:2px 0 0;font-size:18px;line-height:1.35}
+.facts .full{grid-column:1/-1}
+.calL{margin:24px 0 0;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--marigold);font-weight:700}
+.cals{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:10px}
+.cal{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;border:1px solid rgba(242,169,59,.6);color:var(--marigold);text-decoration:none;font-weight:700;font-size:15px;letter-spacing:.04em}
+.cal svg{width:16px;height:16px}
+.count{margin:18px 0 0;font-size:13px;letter-spacing:.26em;text-transform:uppercase;color:var(--brass);font-weight:700;font-variant-numeric:tabular-nums}
+
+/* ---------- RSVP ---------- */
+.rsvp{margin-top:36px;padding:30px 22px 28px;border-radius:22px;background:rgba(251,239,217,.04);border:1px solid rgba(201,154,75,.35);text-align:center}
+.rsvp h2{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(34px,9vw,44px);line-height:1.1}
+.rsvp .sub{margin:4px 0 0;color:var(--muted)}
+.open{margin-top:22px;padding:16px 44px;border:0;border-radius:999px;cursor:pointer;font-weight:700;font-size:19px;letter-spacing:.12em;text-transform:uppercase;
+  color:#2A1405;background:linear-gradient(180deg,#FFD27A,var(--marigold));box-shadow:0 0 0 1px rgba(255,210,122,.4),0 10px 30px rgba(242,169,59,.35)}
+.open:hover{filter:brightness(1.06)}
+.panel{display:grid;gap:18px;margin-top:22px;text-align:left}
+.panel.in{animation:rise .45s cubic-bezier(.2,1,.3,1)}
+@keyframes rise{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
+.field{display:grid;gap:8px;min-width:0}
+.lab{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--marigold);font-weight:700}
+input[type=text]{width:100%;font:inherit;font-size:17px;color:var(--ivory);background:rgba(16,12,38,.7);border:1px solid rgba(201,154,75,.45);border-radius:12px;padding:12px 14px}
+input[type=text]::placeholder{color:#857A6A}
+input[type=text]:focus{outline:none;border-color:var(--marigold);box-shadow:0 0 0 3px rgba(242,169,59,.2)}
+.err{margin:0;color:#FF9A8A;font-size:15px}
+.err:empty{display:none}
+.stepper{display:inline-flex;align-items:center;border:1px solid rgba(201,154,75,.45);border-radius:999px;overflow:hidden;width:max-content}
+.stepper button{width:48px;height:46px;border:0;background:transparent;font-size:24px;color:var(--marigold);cursor:pointer}
+.stepper button:hover{background:rgba(242,169,59,.12)}
+.stepper output{min-width:46px;text-align:center;font-size:20px;font-weight:700;font-variant-numeric:tabular-nums}
+.answers{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.ans{display:grid;place-items:center;gap:2px;min-height:76px;padding:10px 6px;border-radius:16px;text-decoration:none;text-align:center;font-weight:700;font-size:18px;line-height:1.15;cursor:pointer;transition:transform .15s,filter .15s}
+.ans small{font-weight:500;font-size:13px;opacity:.85}
+.ans:active{transform:scale(.97)}
+.ans:hover{filter:brightness(1.08)}
+.ans.yes{color:#2A1405;background:linear-gradient(180deg,#FFD27A,var(--marigold))}
+.ans.maybe{color:var(--ivory);background:rgba(214,51,108,.22);border:1px solid rgba(214,51,108,.7)}
+.ans.no{color:var(--muted);background:transparent;border:1px solid rgba(191,174,147,.5)}
+.done{margin-top:22px;display:grid;gap:6px;justify-items:center}
+.done .big{font-family:var(--display);font-size:clamp(28px,8vw,36px);line-height:1.15;color:var(--marigold);margin:0;text-wrap:balance}
+.done p{margin:0;color:var(--muted)}
+.link{margin-top:8px;border:0;background:none;color:var(--ivory);text-decoration:underline;text-underline-offset:4px;cursor:pointer;font-size:15px}
+footer{text-align:center;padding-block:40px 48px}
+footer .deva{margin:0;font-size:30px}
+footer p{margin:6px 0 0;color:var(--muted)}
+
+@media (prefers-reduced-motion:reduce){.flame,.glow{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<canvas id="fw" aria-hidden="true"></canvas>
+
+<!-- shared gradients for every diya -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <radialGradient id="gGlow"><stop offset="0" stop-color="#FFD27A" stop-opacity=".75"/><stop offset=".45" stop-color="#FF7A2E" stop-opacity=".25"/><stop offset="1" stop-color="#FF7A2E" stop-opacity="0"/></radialGradient>
+    <linearGradient id="gFlame" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#FF6A1A"/><stop offset=".45" stop-color="#FFB13B"/><stop offset=".8" stop-color="#FFF1C2"/><stop offset="1" stop-color="#FFFFFF"/></linearGradient>
+    <linearGradient id="gClay" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C85A32"/><stop offset="1" stop-color="#7A2E18"/></linearGradient>
+  </defs>
+</svg>
+
+<main>
+  <header class="hero wrap" id="top">
+    <p class="kick">Save the date</p>
+    <p class="deva" lang="hi">शुभ दीपावली</p>
+    <h1>Diwali Night</h1>
+    <div class="date" aria-label="Saturday, 7 November 2026">
+      <span class="w">Sat</span><span class="d">7</span><span class="m">Nov<br>2026</span>
+    </div>
+    <p class="host"><b>5 PM onwards</b> · 20 Westfield Cres, Waterdown</p>
+
+    <div class="bigdiya" id="bigdiya" aria-hidden="true"></div>
+
+    <a class="cta" id="heroRsvp" href="#rsvp">RSVP now</a>
+
+    <div class="row" id="row" aria-hidden="true"></div>
+  </header>
+
+  <div class="wrap">
+    <section class="card" aria-labelledby="ch">
+      <h2 id="ch">An evening of lights, sweets and fireworks</h2>
+      <p class="lede">Keep the evening free and come hungry. Doors open at 5 PM.</p>
+      <dl class="facts">
+        <div><dt>Date</dt><dd>Saturday, 7 November 2026</dd></div>
+        <div><dt>Time</dt><dd>5 PM onwards</dd></div>
+        <div class="full"><dt>Place</dt><dd>20 Westfield Cres, Waterdown</dd></div>
+        <div class="full"><dt>Bring</dt><dd>Your festive best and a big appetite for mithai</dd></div>
+      </dl>
+      <p class="calL">Add to your calendar</p>
+      <div class="cals">
+        <a class="cal" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Diwali%20Night&amp;dates=20261107T170000/20261107T230000&amp;ctz=America/Toronto&amp;details=Save%20the%20date%20for%20Diwali%20Night.%20Full%20invitation%20to%20follow.&amp;location=20%20Westfield%20Cres%2C%20Waterdown%2C%20ON"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Google Calendar</a>
+      </div>
+      <p class="count" id="cd"></p>
+    </section>
+
+    <section class="rsvp" id="rsvp" aria-labelledby="rh">
+      <h2 id="rh">Will you join us?</h2>
+      <p class="sub">Tap your answer and send it on WhatsApp.</p>
+
+      <button type="button" class="open" id="openBtn" aria-expanded="false" aria-controls="panel">RSVP</button>
+
+      <div class="panel" id="panel" hidden>
+        <div class="field">
+          <label class="lab" for="nm">Your name</label>
+          <input type="text" id="nm" autocomplete="name" placeholder="Name">
+          <p class="err" id="nmErr"></p>
+        </div>
+        <div class="field">
+          <span class="lab">Guests, including you</span>
+          <div class="stepper"><button type="button" id="minus" aria-label="Fewer guests">−</button><output id="gc" aria-live="polite">1</output><button type="button" id="plus" aria-label="More guests">+</button></div>
+        </div>
+        <div class="answers" role="group" aria-label="Your answer">
+          <a class="ans yes" id="ansYes" data-v="yes" href="#rsvp" target="_blank" rel="noopener">Yes<small>count us in</small></a>
+          <a class="ans maybe" id="ansMaybe" data-v="maybe" href="#rsvp" target="_blank" rel="noopener">Maybe<small>we'll try</small></a>
+          <a class="ans no" id="ansNo" data-v="no" href="#rsvp" target="_blank" rel="noopener">No<small>can't make it</small></a>
+        </div>
+      </div>
+
+      <div class="done" id="done" hidden aria-live="polite">
+        <p class="big" id="doneBig"></p>
+        <p id="doneSub"></p>
+        <button type="button" class="link" id="change">Change my answer</button>
+      </div>
+    </section>
+  </div>
+
+  <footer class="wrap">
+    <p class="deva" lang="hi">दीपावली की शुभकामनाएँ</p>
+    <p>See you at 20 Westfield Cres, Waterdown</p>
+  </footer>
+</main>
+
+<script>
+(function(){
+  /* ---- RSVP destination ----
+     GOOGLE FORM: paste the form's ID (the part after /forms/d/e/ in its link) and the
+     entry IDs for its three questions: Name, Coming (Yes / Maybe / No), Guests.
+     Tapping Yes, Maybe or No then records the answer straight into the form.
+     While FORM_ID is empty, the answer goes out on WhatsApp instead. */
+  var FORM_ID = "";
+  var ENTRY = { name:"", coming:"", guests:"" };   /* e.g. name:"entry.123456789" */
+  /* WhatsApp fallback: country code + number, no "+" (e.g. "16475551234"). Empty = guest picks a chat. */
+  var RSVP_NUMBER = "14372378825";
+  var USE_FORM = !!FORM_ID;
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $ = function(id){return document.getElementById(id)};
+
+  /* ---- diyas ---- */
+  function diya(dots){
+    var d='';
+    for(var i=0;i<dots;i++){var x=30+i*(60/(dots-1)), y=64+Math.sin(i/(dots-1)*Math.PI)*6;d+='<circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="2.2" fill="#F2A93B"/>'}
+    return '<svg viewBox="0 0 120 100" aria-hidden="true">'+
+      '<circle class="glow" cx="60" cy="30" r="34" fill="url(#gGlow)"/>'+
+      '<path class="flame" d="M60 6C67 19 71 28 67 38c-2.5 6-11.5 6-14 0C49 28 53 19 60 6Z" fill="url(#gFlame)"/>'+
+      '<path d="M58 44h4v7h-4z" fill="#3A1A0C"/>'+
+      '<path d="M10 50Q60 57 110 50Q106 66 92 76Q78 88 60 88Q38 88 24 76Q12 64 10 50Z" fill="url(#gClay)"/>'+
+      '<path d="M104 51q10-6 14-14q-2 10-10 18z" fill="#A9472A"/>'+
+      '<ellipse cx="60" cy="50" rx="50" ry="6.5" fill="#D9733F"/>'+
+      '<ellipse cx="60" cy="50" rx="41" ry="4" fill="#7A3A12"/>'+
+      '<path d="M22 72q38 12 76 0" fill="none" stroke="#F2A93B" stroke-width="1.6" stroke-dasharray="3 4"/>'+
+      d+'</svg>';
+  }
+  var big=$('bigdiya'); big.innerHTML=diya(7);
+  var row=$('row'), n=innerWidth<420?5:7, h='';
+  for(var i=0;i<n;i++)h+=diya(5);
+  row.innerHTML=h;
+  [].forEach.call(row.querySelectorAll('.flame,.glow'),function(el,i){el.style.animationDelay=(-Math.random()*2).toFixed(2)+'s'});
+
+  /* ---- fireworks ---- */
+  var cv=$('fw'), ctx=cv.getContext('2d'), W=0, H=0, dpr=Math.min(2,devicePixelRatio||1), parts=[], rockets=[];
+  var COLORS=['#FFD27A','#F2A93B','#FF7A2E','#D6336C','#FFF1C2','#F5C6FF','#7FE3FF'];
+  function size(){W=innerWidth;H=innerHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
+  size(); addEventListener('resize',size);
+  function burst(x,y,big){
+    var c=COLORS[Math.random()*COLORS.length|0], c2=COLORS[Math.random()*COLORS.length|0], count=big?120:70, sp=big?5.2:3.8;
+    for(var i=0;i<count;i++){
+      var a=Math.PI*2*i/count+Math.random()*.1, v=sp*(.55+Math.random()*.5);
+      parts.push({x:x,y:y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,life:1,decay:.008+Math.random()*.01,c:i%3?c:c2,r:big?2.2:1.8,tw:Math.random()<.3});
+    }
+  }
+  function launch(tx,ty,big){
+    var x=tx!=null?tx:W*(.15+Math.random()*.7), y=ty!=null?ty:H*(.12+Math.random()*.3);
+    rockets.push({x:x+(Math.random()-.5)*40,y:H+10,tx:x,ty:y,big:big});
+  }
+  var last=0, next=600;
+  function frame(t){
+    if(t-last>next){launch();last=t;next=900+Math.random()*1600}
+    ctx.globalCompositeOperation='destination-out';
+    ctx.fillStyle='rgba(0,0,0,.22)';ctx.fillRect(0,0,W,H);
+    ctx.globalCompositeOperation='lighter';
+    for(var i=rockets.length-1;i>=0;i--){var r=rockets[i];
+      r.y-=Math.max(4,(r.y-r.ty)*.045); r.x+=(r.tx-r.x)*.04;
+      ctx.fillStyle='#FFE7B0';ctx.beginPath();ctx.arc(r.x,r.y,1.8,0,7);ctx.fill();
+      if(r.y-r.ty<6){burst(r.x,r.y,r.big);rockets.splice(i,1)}}
+    for(var j=parts.length-1;j>=0;j--){var p=parts[j];
+      p.vx*=.985;p.vy=p.vy*.985+.045;p.x+=p.vx;p.y+=p.vy;p.life-=p.decay;
+      if(p.life<=0){parts.splice(j,1);continue}
+      ctx.globalAlpha=p.tw?(p.life*(.4+Math.random()*.6)):p.life;
+      ctx.fillStyle=p.c;ctx.beginPath();ctx.arc(p.x,p.y,p.r*(.6+p.life*.6),0,7);ctx.fill()}
+    ctx.globalAlpha=1;
+    requestAnimationFrame(frame);
+  }
+  function still(){ /* reduced motion: a few frozen bursts */
+    ctx.globalCompositeOperation='lighter';
+    [[.2,.18],[.78,.14],[.55,.32]].forEach(function(q,k){var x=W*q[0],y=H*q[1],c=COLORS[k*2%COLORS.length];
+      for(var i=0;i<60;i++){var a=Math.PI*2*i/60,rr=50+(i%3)*14;ctx.globalAlpha=.7;ctx.fillStyle=c;ctx.beginPath();ctx.arc(x+Math.cos(a)*rr,y+Math.sin(a)*rr,1.8,0,7);ctx.fill()}});
+    ctx.globalAlpha=1;
+  }
+  if(reduce)still(); else {requestAnimationFrame(frame);
+    [300,700,1100].forEach(function(t,k){setTimeout(function(){launch(W*(.25+k*.25),H*(.16+(k%2)*.08),k===1)},t)})}
+
+  /* ---- countdown ---- */
+  var target=new Date('2026-11-07T17:00:00-05:00').getTime();
+  function tick(){var d=target-Date.now(),days=Math.ceil(d/864e5);
+    $('cd').textContent=d<=0?'Happy Diwali, the lights are on':(days>1?days+' days to go':'Tomorrow night')}
+  tick(); setInterval(tick,60000);
+
+  /* ---- RSVP ---- */
+  var gc=1, out=$('gc'), panel=$('panel'), openBtn=$('openBtn'), done=$('done');
+  var WORD={yes:'Yes',maybe:'Maybe',no:'No'};
+  try{var saved=localStorage.getItem('diwali-name');if(saved)$('nm').value=saved}catch(_){}
+  openBtn.addEventListener('click',function(){
+    openBtn.hidden=true; openBtn.setAttribute('aria-expanded','true');
+    panel.hidden=false; panel.classList.add('in');
+    if(!$('nm').value)$('nm').focus();
+  });
+  $('heroRsvp').addEventListener('click',function(){if(!openBtn.hidden)openBtn.click()});
+  $('minus').addEventListener('click',function(){gc=Math.max(1,gc-1);out.textContent=gc;refresh()});
+  $('plus').addEventListener('click',function(){gc=Math.min(15,gc+1);out.textContent=gc;refresh()});
+  function link(v){
+    var nm=$('nm').value.trim(), guests=v==='no'?'0':String(gc);
+    if(USE_FORM){
+      var p=['usp=pp_url'];
+      function add(k,val){if(ENTRY[k])p.push(ENTRY[k]+'='+encodeURIComponent(val))}
+      add('name',nm); add('coming',WORD[v]); add('guests',guests);
+      p.push('submit=Submit');
+      return 'https://docs.google.com/forms/d/e/'+FORM_ID+'/formResponse?'+p.join('&');
+    }
+    var t='RSVP for Diwali Night (Sat 7 Nov, 5 PM)\n\nName: '+(nm||'-')+'\nComing: '+WORD[v]+(v==='no'?'':'\nGuests: '+gc);
+    var q='text='+encodeURIComponent(t);
+    return RSVP_NUMBER?('https://wa.me/'+RSVP_NUMBER+'?'+q):('https://api.whatsapp.com/send?'+q);
+  }
+  var btns=[$('ansYes'),$('ansMaybe'),$('ansNo')];
+  function refresh(){btns.forEach(function(b){b.href=link(b.dataset.v)})}
+  $('nm').addEventListener('input',function(){$('nmErr').textContent='';refresh()}); refresh();
+  btns.forEach(function(b){b.addEventListener('click',function(e){
+    var nm=$('nm').value.trim();
+    if(!nm){e.preventDefault();$('nmErr').textContent='Add your name first so we know who is coming.';$('nm').focus();return}
+    refresh();
+    try{localStorage.setItem('diwali-name',nm)}catch(_){}
+    var v=b.dataset.v, first=nm.split(' ')[0];
+    $('doneBig').textContent=v==='yes'?('See you there, '+first+'!'):v==='maybe'?('Thanks, '+first+'. Hope you can make it!'):('We\'ll miss you, '+first+'.');
+    $('doneSub').textContent=USE_FORM?(v==='no'?'Your answer is saved.':'Your answer is saved for '+gc+(gc>1?' guests.':' guest.')):'Tap Send in WhatsApp to finish.';
+    panel.hidden=true; done.hidden=false;
+    if(v!=='no'&&!reduce){var r=done.getBoundingClientRect();launch(W/2,Math.max(60,r.top-160),true);setTimeout(function(){launch(W*.25,H*.2,false)},250);setTimeout(function(){launch(W*.75,H*.22,false)},450)}
+  })});
+  $('change').addEventListener('click',function(){done.hidden=true;panel.hidden=false;panel.classList.remove('in');void panel.offsetWidth;panel.classList.add('in')});
+})();
+</script>
+</body>
+</html>
